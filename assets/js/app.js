@@ -14,29 +14,28 @@ const search_input = document.querySelector(".search_bar input");
 let pokemons_number = 24;
 let pokemon_start = 1;
 const colors = {
-	fire: '#FDDFDF',
-	grass: '#DEFDE0',
-	electric: '#FCF7DE',
-	water: '#DEF3FD',
-	ground: '#f4e7da',
-	rock: '#d5d5d4',
-	fairy: '#fceaff',
-	poison: '#98d7a5',
-	bug: '#f8d5a3',
-	dragon: '#97b3e6',
-	psychic: '#eaeda1',
-	flying: '#F5F5F5',
-	fighting: '#E6E0D4',
-	normal: '#F5F5F5'
+    fire: '#FDDFDF',
+    grass: '#DEFDE0',
+    electric: '#FCF7DE',
+    water: '#DEF3FD',
+    ground: '#f4e7da',
+    rock: '#d5d5d4',
+    fairy: '#fceaff',
+    poison: '#98d7a5',
+    bug: '#f8d5a3',
+    dragon: '#97b3e6',
+    psychic: '#eaeda1',
+    flying: '#F5F5F5',
+    fighting: '#E6E0D4',
+    normal: '#F5F5F5'
 };
-
 const main_types = Object.keys(colors);
 
 const fetchPokemons = async () => {
-	for (let i = pokemon_start; i <= pokemons_number; i++) {
-		const pokemon = await api.getPokemon(i);
+    for (let i = pokemon_start; i <= pokemons_number; i++) {
+        const pokemon = await api.getPokemon(i);
         createPokemonCard(pokemon)
-	}
+    }
 };
 
 const searchPokemons = async text => {
@@ -49,19 +48,19 @@ const searchPokemons = async text => {
 }
 
 function createPokemonCard(pokemon) {
-	const pokemonEl = document.createElement('div');
-	pokemonEl.classList.add('pokemon');
+    const pokemonEl = document.createElement('div');
+    pokemonEl.classList.add('pokemon');
 
-	const type = parseType(pokemon.types);
-	const name = capitalize(pokemon.name);
-	const color = colors[type];
-	
-	pokemonEl.style.backgroundColor = color;
+    const type = parseType(pokemon.types);
+    const name = capitalize(pokemon.name);
+    const color = colors[type];
+
+    pokemonEl.style.backgroundColor = color;
     pokemonEl.addEventListener('click', () => {
         openModal(pokemon.id)
     })
 
-	const pokeInnerHTML = `
+    const pokeInnerHTML = `
         <div class="img-container">
             <img src="https://pokeres.bastionbot.org/images/pokemon/${
 							pokemon.id
@@ -76,9 +75,9 @@ function createPokemonCard(pokemon) {
         </div>
     `;
 
-	pokemonEl.innerHTML = pokeInnerHTML;
+    pokemonEl.innerHTML = pokeInnerHTML;
 
-	poke_container.appendChild(pokemonEl);
+    poke_container.appendChild(pokemonEl);
 }
 
 async function openModal(id) {
@@ -176,7 +175,7 @@ async function openModal(id) {
                     style="width: ${pokemon.stats[5]["base_stat"]}%"></div>
             </div>
         </div>
-    </div>` 
+    </div>`
 
     img_container.innerHTML = `
                 <h1 class="name">${capitalize(pokemon.name)}<span class="number">#${pokemon.id
@@ -184,7 +183,7 @@ async function openModal(id) {
                     .padStart(3, '0')}</span></h1>
                 <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" >
     `
-    
+
     img_container.style.backgroundColor = colors[parseType(pokemon.types)]
 
     pokemon.moves.forEach(moveObj => {
@@ -214,7 +213,7 @@ function parseAbilities(s) {
 
 function parseType(types) {
     const poke_types = types.map(type => type.type.name);
-	const type = main_types.find(type => poke_types.indexOf(type) > -1);
+    const type = main_types.find(type => poke_types.indexOf(type) > -1);
     return type
 }
 
@@ -275,7 +274,7 @@ load_more_btn.addEventListener('click', (e) => {
         fetchPokemons();
     } else {
         e.target.style.display = "none";
-    } 
+    }
     e.target.blur()
 })
 
