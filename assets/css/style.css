@@ -307,3 +307,17 @@ header h1 {
         flex: 1;
     }
 }
+
+@media only screen and (max-width: 550px) {
+    header {
+        justify-content: center;
+    }
+    header h1 {
+        width: 100%;
+        text-align: center;
+    }
+    .search_bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
