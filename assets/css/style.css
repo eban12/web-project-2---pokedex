@@ -94,3 +94,108 @@ header h1 {
     margin-top: 20px;
     max-width: 90%;
 }
+
+.pokemon .info {
+    margin-top: 20px;
+}
+
+.number {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 0.8em;
+    padding: 5px 10px;
+}
+
+.name {
+    margin: 15px 0 7px;
+    letter-spacing: 1px;
+}
+
+.btn {
+    padding: 5px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    cursor: pointer;
+    background-color: #6c79db;
+    color: #fff;
+}
+
+.btn:focus {
+    outline: none;
+    background-color: #D4D3DD;
+    color: #000;
+}
+
+.modal_container {
+    background-color: rgba(200, 200, 200, 0.5);
+    overflow-y: scroll;
+    display: none;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.modal {
+    width: 80%;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(100, 100, 100, 0.8);
+    display: flex;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.active_modal {
+    display: flex;
+}
+
+.modal .info_container {
+    flex: 1;
+    padding: 20px;
+}
+
+.modal .img_container {
+    background-color: #DEFDE0;
+    height: 100%;
+    width: 30%;
+    max-width: 350px;
+    padding: 10px 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.img_container img {
+    margin-top: auto;
+    width: 90%;
+}
+
+.modal .number {
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.modal-btn {
+    background-color: #D4D3DD;
+    box-shadow: none;
+    color: rgba(100, 100, 100, 0.7);
+    background-color: #fff;
+    margin: 0;
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 0;
+}
+
+.modal-btn:focus {
+    background-color: #fff;
+}
