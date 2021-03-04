@@ -11,7 +11,8 @@ const body = document.querySelector('body');
 const img_container = document.querySelector('.img_container');
 const search_input = document.querySelector(".search_bar input");
 
-
+let pokemons_number = 24;
+let pokemon_start = 1;
 const colors = {
 	fire: '#FDDFDF',
 	grass: '#DEFDE0',
@@ -27,4 +28,13 @@ const colors = {
 	flying: '#F5F5F5',
 	fighting: '#E6E0D4',
 	normal: '#F5F5F5'
+};
+
+const main_types = Object.keys(colors);
+
+const fetchPokemons = async () => {
+	for (let i = pokemon_start; i <= pokemons_number; i++) {
+		const pokemon = await api.getPokemon(i);
+        createPokemonCard(pokemon)
+	}
 };
