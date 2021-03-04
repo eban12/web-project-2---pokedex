@@ -80,3 +80,127 @@ function createPokemonCard(pokemon) {
 
 	poke_container.appendChild(pokemonEl);
 }
+
+async function openModal(id) {
+    const pokemon = await api.getPokemon(id)
+    const species = await api.getPokemonSpecies(pokemon.species.url)
+
+    const about_html = ` 
+    <div class="li">
+        <div class="title">Description</div>
+        <div class="value" id="description">${species["flavor_text_entries"][0]["flavor_text"]}</div>
+        </div>
+
+        <div class="li">
+            <div class="title">Species</div>
+            <div class="value">${pokemon.species.name}</div>
+        </div>
+
+        <div class="li">
+            <div class="title">Height</div>
+            <div class="value">${pokemon.height * 10} cm</div>
+        </div>
+
+        <div class="li">
+            <div class="title">Weight</div>
+            <div class="value">${pokemon.weight / 10} kg</div>
+        </div>
+
+        <div class="li">
+            <div class="title">Abilities</div>
+            <div class="value">${parseAbilities(pokemon.abilities)}</div>
+        </div>
+
+        <div class="li">
+            <div class="title">Base Experience</div>
+            <div class="value">${pokemon["base_experience"]}</div>                                     
+    </div>`
+
+    const stats_html = `
+    <div class="li">
+        <div class="title">HP</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[0]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[0]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[0]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="li">
+        <div class="title">Attack</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[1]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[1]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[1]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="li">
+        <div class="title">Defense</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[2]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[2]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[2]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="li">
+        <div class="title">Special Attack</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[3]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[3]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[3]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="li">
+        <div class="title">Special Defense</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[4]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[4]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[4]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="li">
+        <div class="title">Speed</div>
+        <div class="value">
+            <p class="ratio">${pokemon.stats[5]["base_stat"]}%</p>
+            <div class="ratio_container">
+                <div class="ratio_bar ${pokemon.stats[5]["base_stat"] >= 50 ? "green_bar": ""}"
+                    style="width: ${pokemon.stats[5]["base_stat"]}%"></div>
+            </div>
+        </div>
+    </div>` 
+
+    img_container.innerHTML = `
+                <h1 class="name">${capitalize(pokemon.name)}<span class="number">#${pokemon.id
+                    .toString()
+                    .padStart(3, '0')}</span></h1>
+                <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" >
+    `
+    
+    img_container.style.backgroundColor = colors[parseType(pokemon.types)]
+
+    pokemon.moves.forEach(moveObj => {
+        const li = document.createElement('div');
+        li.classList.add('li')
+        li.innerHTML = `
+            <div class="value">${capitalize(moveObj.move.name)}</div>
+            <div class="value">${moveObj["version_group_details"][0]["level_learned_at"]}</div>
+            <div class="value">${capitalize(moveObj["version_group_details"][0]["move_learn_method"].name)}</div>
+        `
+        moves_tab.appendChild(li);
+    });
+
+    about_tab.innerHTML = about_html;
+    stats_tab.innerHTML = stats_html;
+    body.classList.add('modal_open')
+    modal.classList.add('active_modal')
+}
+
