@@ -204,3 +204,20 @@ async function openModal(id) {
     modal.classList.add('active_modal')
 }
 
+function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function parseAbilities(s) {
+    return s.map(a => capitalize(a.ability.name)).join(', ')
+}
+
+function parseType(types) {
+    const poke_types = types.map(type => type.type.name);
+	const type = main_types.find(type => poke_types.indexOf(type) > -1);
+    return type
+}
+
+search_input.addEventListener('keydown', (e) => {
+    searchPokemons(search_input.value);
+})
