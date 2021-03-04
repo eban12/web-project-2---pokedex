@@ -38,3 +38,12 @@ const fetchPokemons = async () => {
         createPokemonCard(pokemon)
 	}
 };
+
+const searchPokemons = async text => {
+    const searchResult = pokemons.filter(pokemon => pokemon.name.indexOf(text.toLowerCase()) != -1);
+    poke_container.innerHTML = "";
+    for (let i = 0; i < searchResult.length && i <= 24; i++) {
+        const pokemon = await api.getPokemon(searchResult[i].name)
+        createPokemonCard(pokemon)
+    }
+}
