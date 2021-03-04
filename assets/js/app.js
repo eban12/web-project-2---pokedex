@@ -47,3 +47,36 @@ const searchPokemons = async text => {
         createPokemonCard(pokemon)
     }
 }
+
+function createPokemonCard(pokemon) {
+	const pokemonEl = document.createElement('div');
+	pokemonEl.classList.add('pokemon');
+
+	const type = parseType(pokemon.types);
+	const name = capitalize(pokemon.name);
+	const color = colors[type];
+	
+	pokemonEl.style.backgroundColor = color;
+    pokemonEl.addEventListener('click', () => {
+        openModal(pokemon.id)
+    })
+
+	const pokeInnerHTML = `
+        <div class="img-container">
+            <img src="https://pokeres.bastionbot.org/images/pokemon/${
+							pokemon.id
+						}.png" alt="${name}" />
+        </div>
+        <div class="info">
+            <span class="number">#${pokemon.id
+							.toString()
+							.padStart(3, '0')}</span>
+            <h3 class="name">${name}</h3>
+            <small class="type">Type: <span>${type}</span></small>
+        </div>
+    `;
+
+	pokemonEl.innerHTML = pokeInnerHTML;
+
+	poke_container.appendChild(pokemonEl);
+}
