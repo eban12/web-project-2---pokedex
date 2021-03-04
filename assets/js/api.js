@@ -16,3 +16,8 @@ const api = {
         return pokes.results
     }
 }
+
+let pokemons; 
+(async function () {
+    pokemons = await api.getAllPokemon();
+})();
