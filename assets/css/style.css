@@ -266,3 +266,18 @@ header h1 {
     width: 27%;
     justify-content: space-between;
 }
+
+.moves .li div:nth-child(2) {
+    padding-left: 10px;
+}
+
+.ratio_bar {
+    width: 45%;
+    background-color: red;
+    height: 5px;
+    border-radius: 5px;
+}
+
+.green_bar {
+    background-color: seagreen;
+}
