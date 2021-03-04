@@ -221,3 +221,33 @@ function parseType(types) {
 search_input.addEventListener('keydown', (e) => {
     searchPokemons(search_input.value);
 })
+
+about_btn.addEventListener('click', () => {
+    about_btn.classList.add('active');
+    stats_btn.classList.remove('active');
+    moves_btn.classList.remove('active');
+
+    about_tab.classList.add('active_tab');
+    stats_tab.classList.remove('active_tab');
+    moves_tab.classList.remove('active_tab');
+})
+
+stats_btn.addEventListener('click', () => {
+    about_btn.classList.remove('active');
+    stats_btn.classList.add('active');
+    moves_btn.classList.remove('active');
+
+    about_tab.classList.remove('active_tab');
+    stats_tab.classList.add('active_tab');
+    moves_tab.classList.remove('active_tab');
+})
+
+moves_btn.addEventListener('click', () => {
+    about_btn.classList.remove('active');
+    stats_btn.classList.remove('active');
+    moves_btn.classList.add('active');
+
+    about_tab.classList.remove('active_tab');
+    stats_tab.classList.remove('active_tab');
+    moves_tab.classList.add('active_tab');
+})
