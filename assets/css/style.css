@@ -281,3 +281,29 @@ header h1 {
 .green_bar {
     background-color: seagreen;
 }
+
+@media only screen and (max-width: 750px) {
+    .modal {
+        width: 100%;
+        margin: 10px;
+        flex-direction: column-reverse;
+        overflow-y: scroll;
+    }
+    .moves .li div:last-child {
+        flex: 1;
+    }
+    .modal .img_container {
+        width: 100%;
+        max-width: 100%;
+        height: 50%;
+    }
+    .img_container img {
+        width: auto;
+        height: 60%;
+        display: block;
+        margin: auto;
+    }
+    .search_bar input {
+        flex: 1;
+    }
+}
