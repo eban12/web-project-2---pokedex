@@ -199,3 +199,55 @@ header h1 {
 .modal-btn:focus {
     background-color: #fff;
 }
+
+.active {
+    border-bottom: 2px solid #6c79db;
+    color: #000;
+}
+
+.tab {
+    height: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: none;
+}
+
+.active_tab {
+    display: block;
+}
+
+.li {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.li .title {
+    width: 30%;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.6);
+    margin-right: 20px;
+}
+
+.li .value {
+    flex: 1;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.ratio {
+    margin: 0;
+}
+
+.ratio_container {
+    flex: 1;
+    height: 5px;
+    background-color: rgba(100, 100, 100, 0.7);
+    border-radius: 5px;
+    margin-left: 20px;
+}
