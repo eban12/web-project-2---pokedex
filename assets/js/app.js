@@ -251,3 +251,32 @@ moves_btn.addEventListener('click', () => {
     stats_tab.classList.remove('active_tab');
     moves_tab.classList.add('active_tab');
 })
+
+modal.addEventListener('click', (e) => {
+    if (!modal.querySelector('.modal').contains(e.target)) {
+        modal.classList.remove('active_modal');
+        body.classList.remove('modal_open');
+
+        about_btn.classList.add('active');
+        stats_btn.classList.remove('active');
+        moves_btn.classList.remove('active');
+
+        about_tab.classList.add('active_tab');
+        stats_tab.classList.remove('active_tab');
+        moves_tab.classList.remove('active_tab');
+    }
+})
+
+load_more_btn.addEventListener('click', (e) => {
+    pokemons_number += 25;
+    pokemon_start += 25;
+    if (pokemons_number <= 1118) {
+        console.log("here");
+        fetchPokemons();
+    } else {
+        e.target.style.display = "none";
+    } 
+    e.target.blur()
+})
+
+fetchPokemons();
